@@ -1,0 +1,36 @@
+input,
+textarea {
+  font-family: $reg, Arial, sans-serif;
+  font-size: 14px;
+  color: #ccc;
+  &::-webkit-input-placeholder {
+    color: #ccc;
+  }
+  &::-moz-placeholder {
+    color: #ccc;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc;
+  }
+  &:-moz-placeholder {
+    color: #ccc;
+  }
+}
+
+.form {
+  &__group {
+    position: relative;
+    &-label {
+      display: block
+    }
+    &-input {
+      display: block;
+    }
+    &-message {
+      font-size: 12px;
+      color: red;
+      display: none;
+      margin-top: 3px;
+    }
+  }
+}

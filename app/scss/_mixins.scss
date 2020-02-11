@@ -1,0 +1,58 @@
+@mixin reset-list {
+  list-style: none;
+}
+
+@mixin flex($jc: flex-start, $ai: stretch, $fw: nowrap) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-wrap: $fw;
+}
+
+@mixin bg($image, $repeat: no-repeat, $pos: center, $size: cover) {
+  background: url($image) $repeat $pos;
+  background-size: $size;
+}
+
+@mixin img($disp: block, $w: 100%, $h: auto) {
+  display: block;
+  width: $w;
+  height: $h;
+}
+
+@mixin svg($fill: #000, $stroke: none, $w: 100%, $h: 100%) {
+  display: block;
+  width: $w;
+  height: $h;
+  fill: $fill;
+  stroke: $stroke;
+}
+
+@mixin hover {
+  &:not([disabled]):hover {
+    @content;
+  }
+}
+
+@mixin round($val) {
+  border-radius: $val;
+}
+
+@mixin media($screen, $isMaxWidth: true) {
+  @if $isMaxWidth == true {
+    @media screen and (max-width: $screen) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $screen) {
+      @content;
+    }
+  }
+}
+
+@mixin center-absolute($x: 50%, $y: 50%, $transformX: -50%, $transformY: -50%) {
+  position: absolute;
+  left: $x;
+  top: $y;
+  transform: translate($transformX, $transformY);
+}

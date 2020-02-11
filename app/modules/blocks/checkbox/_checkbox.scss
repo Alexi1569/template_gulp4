@@ -1,0 +1,33 @@
+.checkbox {
+  position: relative;
+  padding-left: 22px;
+  cursor: pointer;
+  display: inline-block;
+  input {
+    display: none;
+    &:checked + span {
+      &:before {
+
+      }
+      &:after {
+
+      }
+    }
+  }
+  span {
+    transition: $tr;
+    &:before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      transition: $tr;
+    }
+    &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      transition: $tr;
+    }
+
+  }
+}
