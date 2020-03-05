@@ -1,15 +1,28 @@
 .breadcrumbs {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: -2px;
-  font-size: 12px;
+  padding-top: 40px;
+  ul {
+    @include reset-list();
+    @include flex(center, stretch, false, wrap);
+    margin-bottom: -2px;
+    font-size: 14px;
+  }
   li {
+    color: rgba(#ccc, .5);
+    line-height: 130%;
     margin-bottom: 2px;
-
+    text-align: center;
+    &:last-of-type {
+      &:after {
+        display: none;
+      }
+    }
+    &:after {
+      content: '/';
+      display: inline-block;
+      margin: 0 4px;
+    }
   }
   a {
-    text-decoration: none;
-    color: inherit;
+    @include link();
   }
 }

@@ -1,2 +1,19 @@
-nav#mobile-menu.mobile-menu
-  ul
+#mobile-menu.mobile-menu
+  .mobile-menu__inner
+    .mobile-menu__top
+      a(href="#").logo.mobile-menu__logo
+        img.lazyload(data-src="images/logo.svg" alt="title")
+    .mobile-menu__content
+      nav.mobile-menu__nav.nav
+        ul
+          li
+            a(href="#") О компании
+          li
+            a(href="#") Трейдинг криптовалюты
+          li
+            a(href="#") Аналитика рынка
+          li
+            a(href="#") Новости
+          li
+            a(href="#") Контакты
+    .mobile-menu__bottom

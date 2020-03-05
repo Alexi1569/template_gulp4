@@ -2,11 +2,16 @@
   list-style: none;
 }
 
-@mixin flex($jc: flex-start, $ai: stretch, $fw: nowrap) {
-  display: flex;
+@mixin flex($jc: flex-start, $ai: stretch, $isInline: false, $fw: nowrap, $fd: row) {
+  @if $isInline == true {
+    display: inline-flex;
+  } @else if $isInline == false {
+    display: flex;
+  }
   justify-content: $jc;
   align-items: $ai;
   flex-wrap: $fw;
+  flex-direction: $fd;
 }
 
 @mixin bg($image, $repeat: no-repeat, $pos: center, $size: cover) {
@@ -20,8 +25,10 @@
   height: $h;
 }
 
-@mixin svg($fill: #000, $stroke: none, $w: 100%, $h: 100%) {
-  display: block;
+@mixin svg($fill: #000, $stroke: none, $w: auto, $h: auto) {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
   width: $w;
   height: $h;
   fill: $fill;
@@ -55,4 +62,23 @@
   left: $x;
   top: $y;
   transform: translate($transformX, $transformY);
+}
+
+@mixin link() {
+  text-decoration: none;
+  color: inherit;
+}
+
+@mixin before($d: inline-block) {
+  content: '';
+  display: $d;
+  @content;
+}
+
+@mixin after($d: inline-block) {
+  &:after {
+    content: '';
+    display: $d;
+    @content;
+  }
 }

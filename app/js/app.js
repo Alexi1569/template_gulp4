@@ -1,14 +1,14 @@
-﻿import lazyload from 'lazyload';
-import mmenu from 'mmenu-js';
+﻿import LazyLoad from 'vanilla-lazyload';
 import fancybox from '@fancyapps/fancybox';
-import select2 from 'select2/dist/js/select2.full.min';
-import swiper from 'swiper';
+import Swiper from 'swiper';
 import mask from 'jquery-mask-plugin';
-import TweenMax from '../libs/TweenMax.min';
+import scrollbar from '../libs/jquery.scrollbar.min';
 
 jQuery(document).ready(function($) {
   let windowWidth = $(window).width();
   let containerW = $('.container').width();
+  let headerHeight = $('.header').outerHeight(true);
+  let windowHeight = $(window).height();
 
   $.fancybox.defaults.hideScrollbar = false;
   $.fancybox.defaults.touch = false;
@@ -21,6 +21,8 @@ jQuery(document).ready(function($) {
   $(window).resize(function() {
     windowWidth = $(window).width();
     containerW = $('.container').width();
+    headerHeight = $('.header').outerHeight(true);
+    windowHeight = $(window).height();
   });
 
   $(window).on('load', function() {});
@@ -34,9 +36,6 @@ jQuery(document).ready(function($) {
       )
     ) {
       $('.category__sidebar').removeClass('visible');
-      $('body').removeClass('block-scroll');
-
-      $(window).scrollTop(offsetBeforeFilter);
     }
   });
 
@@ -102,12 +101,25 @@ jQuery(document).ready(function($) {
     e.preventDefault();
 
     var target = $(this).attr('href');
-    $('html, body').animate({ scrollTop: $(target).offset().top }, 0);
+    $('html, body').animate({ scrollTop: $(target).offset().top }, 700);
   });
 
   if ($('.lazyload').length) {
     window.lazyLoadInstance = new LazyLoad({
       elements_selector: '.lazyload'
+    });
+  }
+
+  $('.js-menu-open').click(function() {
+    $('#mobile-menu').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+  if ($('body').hasClass('touch-device')) {
+    $('.list-select__top').click(function() {
+      $(this)
+        .closest('.list-select')
+        .toggleClass('active');
     });
   }
 });
