@@ -306,18 +306,20 @@ gulp.task('styles', done => {
 });
 
 gulp.task('pug', done => {
-  return gulp
-    .src(paths.views.src)
-    .pipe(pug())
-    .pipe(
-      htmlBeautify({
-        indentSize: 2
-      })
-    )
-    .pipe(gulpif(production, replace('.css', '.min.css')))
-    .pipe(gulpif(production, replace('.js', '.min.js')))
-    .pipe(gulp.dest(paths.views.dist))
-    .pipe(browsersync.stream());
+  return (
+    gulp
+      .src(paths.views.src)
+      .pipe(pug())
+      .pipe(
+        htmlBeautify({
+          indentSize: 2
+        })
+      )
+      // .pipe(gulpif(production, replace('.css', '.min.css')))
+      // .pipe(gulpif(production, replace('.js', '.min.js')))
+      .pipe(gulp.dest(paths.views.dist))
+      .pipe(browsersync.stream())
+  );
   done();
 });
 
@@ -343,6 +345,14 @@ gulp.task('webp', done => {
       })
     )
     .on('end', browsersync.reload);
+  done();
+});
+
+gulp.task('rename', done => {
+  return gulp
+    .src('./dist/index.html')
+    .pipe(rename('main.html'))
+    .pipe(gulp.dest('./dist/'));
   done();
 });
 
@@ -373,7 +383,8 @@ export const prod = gulp.series(
     'webp',
     'fonts',
     'favicons',
-    'gzip'
+    'gzip',
+    'rename'
   ])
 );
 
